@@ -60,10 +60,15 @@ import GitLinux from "./_git-linux.mdx"
 
 ### Test your git local install!
 
+Before your SSH connection test, make sure
+1. Check for existing SSH keys
+2. Generate a new SSH key (if you don't have SSH key)
+3. Add a new SSH key to Github account (if you don't have SSH key in github)
+
 Run the following command in your terminal:
 
 ```bash
-ssh git@github.com -T
+ssh -T git@github.com
 ```
 
 If you received a response similar to the below image, then you have successfully set up git locally ✅
