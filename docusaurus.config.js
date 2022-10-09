@@ -81,10 +81,10 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Content',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Docs',
                 to: '/docs',
               },
             ],
@@ -94,7 +94,7 @@ const config = {
           //   items: [
           //     {
           //       label: 'SCSE Website',
-          //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+          //       href: 'https://',
           //     },
           //   ],
           // },
@@ -108,6 +108,13 @@ const config = {
             ],
           },
         ],
+        logo: {
+          alt: 'Powered by Vercel',
+          src: 'img/powered-by-vercel.svg',
+          href: 'https://vercel.com/?utm_source=cse-it&&utm_campaign=os',
+          width: 220,
+          height: 51,
+        },
         copyright: `Copyright © ${new Date().getFullYear()} NTU SCSE. Built with Docusaurus 🦕.`,
       },
       prism: {
