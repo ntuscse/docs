@@ -5,8 +5,7 @@ sidebar_position: 1
 # Github & Git CLI Setup
 
 ```mdx-code-block
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import OsTabs from "@site/src/components/DocsFeatures/OsTabs.tsx"
 ```
 
 ## Github account
@@ -45,17 +44,11 @@ import GitWindows from "./_git-windows.mdx"
 import GitMacOS from "./_git-macos.mdx"
 import GitLinux from "./_git-linux.mdx"
 
-<Tabs groupId="operating-systems">
-    <TabItem value="win" label="Windows">
-        <GitWindows/>
-    </TabItem>
-    <TabItem value="mac" label="macOS">
-        <GitMacOS/>
-    </TabItem>
-    <TabItem value="linux" label="Linux">
-        <GitLinux/>
-    </TabItem>
-</Tabs>
+<OsTabs
+    windows={<GitWindows />}
+    macos={<GitMacOS />}
+    linux={<GitLinux />}
+/>
 ```
 
 ### Test your git local install!
