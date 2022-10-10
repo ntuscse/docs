@@ -1,0 +1,8 @@
+{
+  "label": "Git Basics",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "How to git with gitlab flow"
+  }
+}
