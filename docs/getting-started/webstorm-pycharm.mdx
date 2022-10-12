@@ -1,8 +1,12 @@
 ---
-sidebar_position: 2
+sidebar_position: 4
 ---
 
 # Webstorm and Pycharm
+
+```mdx-code-block
+import OsTabs from "@site/src/components/DocsFeatures/OsTabs.tsx"
+```
 
 Rather than using VS Code, we recommend using Webstorm for javascript/typescript projects,
 and using Pycharm Professional for python projects.
@@ -13,13 +17,70 @@ You'll want to get a free student license to avoid paying the subscription fee.
 
 Sign up for the Jetbrains Educational License [here](https://www.jetbrains.com/community/education/#students)
 
+Once you click on the link, you should be brought to this page. Under -> 'For Students and teachers', click 'Apply Now'
+
+[Jetbrains Apply Now](./img/jetbrains_license.png)
+
+Then fill in your details and accept the terms and conditions as follows:
+
+### Fill in Details
+![Fill in Details](./img/student_application.png)
+
+### Accept Terms and Conditions
+![Accept Terms](./img/accept_terms.png)
+
+After completing the application, you should receive instructions that are sent to your email. After clicking the link, you will need to register for a new account using the same email in the application process.
+
+![Email Instructions](./img/email_instructions.png)
+
+### Email Instructions
+![Email Account](./img/email_account.png)
+
+Once you have set your password and registered your account, you will be redirected to your account's homepage:
+
+### Account License
+![Account Page](./img/license_confirm.png)
+
+You now have your JetBrains Student License!
+
 ## Installing the IDEs
 
-Once you have obtained your student license, you can visit your jetbrains account to
-download Webstorm and Pycharm
+### Installing Webstorm
 
-## Renewing your License
+![Webstorm Download](./img/webstorm-pycharm/webstorm_download.png)
 
-:::note
-todo
-:::
+```mdx-code-block
+import WebstormWindows from "./webstorm_markdown/_webstorm-windows.mdx"
+import WebstormMacOS from "./webstorm_markdown/_webstorm-mac.mdx"
+import WebstormLinux from "./webstorm_markdown/_webstorm-linux.mdx"
+
+<OsTabs
+    windows={<WebstormWindows />}
+    macos={<WebstormMacOS />}
+    linux={<WebstormLinux />}
+/>
+```
+
+### Installing Pycharm
+
+![Pycharm Download](./img/webstorm-pycharm/pycharm_download.png)
+
+```mdx-code-block
+import PycharmWindows from "./pycharm_markdown/_pycharm_windows.mdx"
+import PycharmMacOS from "./pycharm_markdown/_pycharm_mac.mdx"
+import PycharmLinux from "./pycharm_markdown/_pycharm_linux.mdx"
+
+<OsTabs
+    windows={<PycharmWindows />}
+    macos={<PycharmMacOS />}
+    linux={<PycharmLinux />}
+/>
+```
+
+## Link your JetBrains License
+
+If not already linked, open your IDEs and activate your student license by logging in with the email
+used to create the JetBrains License
+
+
+
