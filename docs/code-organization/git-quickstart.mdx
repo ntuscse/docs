@@ -1,0 +1,342 @@
+---
+sidebar_position: 1
+---
+
+# Git Quickstart
+
+This page contains [Git][git-link] commands that may be useful
+during development. Examples have been provided where the command to be
+executed is prefixed with `$` and the sample output are not.
+
+This document assumes that you have setup Git properly as per [this
+page](../getting-started/github). You should setup your Git before continuing.
+
+Please refer to the [documentation for Git][git-doc] for a
+deeper understanding in Git.
+
+## Initialization/Cloning
+
+To initialize a new repository (project managed by Git), use [`git init`][git-init].
+To clone an existing repository, use [`git clone`][git-clone].
+
+You should only initialize OR clone a repository.
+
+```
+$ git init
+Initialized empty Git repository in /tmp/example/.git/
+```
+
+```
+$ git clone https://github.com/ntuscse/docs
+Cloning into 'docs'...
+remote: Enumerating objects: 239, done.
+remote: Counting objects: 100% (239/239), done.
+remote: Compressing objects: 100% (174/174), done.
+remote: Total 239 (delta 86), reused 192 (delta 54), pack-reused 0
+Receiving objects: 100% (239/239), 1.41 MiB | 1.10 MiB/s, done.
+Resolving deltas: 100% (86/86), done.
+```
+
+## Reviewing Status
+
+You may check the status of your current repository with [`git status`][git-status].
+
+```
+$ git status
+On branch main
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+```
+
+## Staging/Unstaging Files
+
+Files are not automagically tracked by Git, Git needs to be told that it should
+track the current version. To do so, use [`git add`][git-add] to __stage__ the
+file.
+
+You may wish to specify directories instead of files (adding every file
+recursively). The current directory (`.`) is particularly helpful.
+
+```
+$ git add .
+$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   ExampleTestFile.txt
+```
+
+To unstage files (tell Git to forget about the current version that you added),
+use [`git rm --cached <file>`][git-rm] as suggested by the output provided in
+[`git status`][git-status].
+
+:::caution
+Note that `--cached` tells Git to only remove the cached version and not the
+file itself! Failing to specify `--cached` will cause the file to be deleted as
+well.
+:::
+
+```
+$ git rm --cached ExampleTestFile.txt
+rm 'ExampleTestFile.txt'
+
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	ExampleTestFile.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+You may specify multiple files at once for both commands by separating them
+with spaces.
+```
+$ git add a.txt b.txt
+$ git rm --cached a.txt b.txt
+rm 'a.txt'
+rm 'b.txt'
+```
+
+## Creating Commits
+
+To add the current snapshot you crafted with [`git add`][git-add] into the
+actual history, use [`git commit`][git-commit].
+
+Please use `-m` to specify the commit message. The first `-m` will specify the
+title of the commit and the second `-m` will specify the body of the commit.
+
+```
+$ git commit -m "docs: Fix typo in Example docs" -m "Example should be spelled with a single e rather than two es.
+dquote>
+dquote>[SCSE-24]"
+[main 4faee54] docs: Fix typo in Example docs
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+
+Note that in this example, `dquote>` should not be typed in. It simply means
+that the text after is still part of the double quotes.
+
+For an idea of what to write, please refer to our
+[conventions](naming-convention#commit-messages) document.
+
+### Fixing Mistakes
+
+No one gets their code correct every single time and mistakes happen. If you
+messed up the content of a commit (the changes you made) or the title/message,
+you can just re-create the commit with the `--amend` flag!
+
+This will replace the latest commit with the new one that hopefully is fine
+this time. ;)
+
+```
+$ git commit --amend -m "docs: Fix typo in Example docs" -m "Example should be spelled with a single e rather than two es.
+dquote>
+dquote>[SCSE-24]"
+[main f253a79] docs: Fix typo in Example docs
+ Date: Thu Oct 13 23:39:33 2022 +0800
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+
+:::caution
+Note that by doing this, you are recreating history!
+NEVER ever re-create history (amend commits) that you have already pushed (made
+public) unless you are sure that you are the only person that worked on it.
+
+Modifying your own PR branch is generally considered OK but modifying `main` is
+not.
+:::
+
+## Branching
+
+You should definitely create a branch for what you are working on before you
+start working on your super cool feature.
+
+To quote [Pro Git Chapter 3][pro-git-chap-3], branching means you diverge from
+the main line of development and continue to do work without messing with
+that main line.
+
+The [`git switch`][git-switch] command has been added in Git v2.23 (released
+2020 Jan) to help make the process simpler. `-c` will create a branch with the
+specified name while not providing it will simply switch you over to that
+branch.
+
+Note that [`git switch`][git-switch] is still considered experimental and its
+syntax and/or behaviour may change. While this is unlikely, this command should
+not be used for scripting. For that, you may want to check out the commands
+[`git checkout`][git-checkout] and [`git branch`][git-branch].
+
+```
+$ git switch -c docs/SCSE-24
+Switched to a new branch 'docs/SCSE-24'
+
+$ git switch main
+Switched to branch main
+
+$ git switch -c docs/SCSE-24
+fatal: a branch named 'docs/SCSE-24' already exists
+```
+
+## Pulling/Pushing Your Changes
+
+You've finally finished that super cool feature you worked on! Now you just
+need to **push** it to GitHub where we host our code for everyone to see it!
+
+However, you should definitely check that your changes are compatible with all
+the new changes other people have finished while you were working on your
+project.
+
+To do so, apply your changes on top of the current code on GitHub with [`git
+pull --rebase`][git-pull].
+
+```
+$ git pull --rebase origin main
+remote: Enumerating objects: 204, done.
+remote: Counting objects: 100% (204/204), done.
+remote: Compressing objects: 100% (112/112), done.
+remote: Total 204 (delta 104), reused 181 (delta 91), pack-reused 0
+Receiving objects: 100% (204/204), 72.83 KiB | 298.00 KiB/s, done.
+Resolving deltas: 100% (104/104), completed with 25 local objects.
+From github.com/ntuscse/docs
+[More output omitted]
+```
+
+After checking your code still works or after you finish fixing it, it's time
+to show it to everyone by pushing it to GitHub with [`git push`][git-push]!
+
+```
+$ git push
+Total 204 (delta 104), reused 181 (delta 91), pack-reused 0
+remote:
+remote: Create a pull request for 'docs/SCSE-24' on GitHub by visiting:
+remote:      https://github.com/ntuscse/docs/pull/new/docs/SCSE-24
+remote:
+To github.com/ntuscse/docs
+ * [new branch]      docs/SCSE-24 -> docs/SCSE-24
+```
+
+It is possible to fix the naming of your branches while you are pushing. For
+example, if you accidentally worked on the `main` branch locally and wish to
+push your changes to GitHub as `docs/SCSE-24`, you can still specify what the
+name at GitHub should be while pushing.
+
+```
+$ git push origin main:docs/SCSE-24
+Total 204 (delta 104), reused 181 (delta 91), pack-reused 0
+remote:
+remote: Create a pull request for 'docs/SCSE-24' on GitHub by visiting:
+remote:      https://github.com/ntuscse/docs/pull/new/docs/SCSE-24
+remote:
+To github.com/ntuscse/docs
+ * [new branch]      main -> docs/SCSE-24
+```
+
+## What Next?
+
+This document is currently work in progress! If there is anything you are
+unclear about, ask about them in our Discord and we will be using those valuable
+feedbacks to improve this page.
+
+Git is just a tool to help manage different versions of code as we collaborate
+and is nothing if we don't use it so start familiarizing yourself with it! You
+may wish to do so by [creating your own GitHub repository][create-github-repo]
+and playing around with it.
+
+You might want to check out the [naming conventions](naming-convention) we have
+written to help keep everything tidy.
+
+## Appendix A: Fixing History
+
+So you did not heed my advice in [mistake fixing](#fixing-mistakes) and
+recreated history that has already been pushed. Now, GitHub is angry at you
+whenever you try to push.
+
+```
+$ git push
+To github.com/ntuscse/docs
+ ! [rejected]        docs/SCSE-24 -> docs/SCSE-24 (non-fast-forward)
+error: failed to push some refs to 'github.com/ntuscse/docs'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+You have three options, all of them pretty nuclear but that is the state we are
+in.
+
+#### Option 1: Force push (softer version)
+
+Perhaps you were just pushing to the branch of your PR and it's actually fine
+to override it.
+
+:::caution
+Before continuing, make sure that you are pushing to the branch of your own
+task (PR) and not someone else's branch. You can check this by reading the
+right side of the arrow in the error message.
+:::
+
+In that case, you can run `git push` with `--force-with-lease`. This will tell
+GitHub that you really do intend to override the changes on GitHub.
+
+#### Option 2: Force push (harder version)
+
+Well, that didn't work. GitHub is complaining that the version you have saved
+locally is different from the version on GitHub (a sign that someone else has
+worked on it).
+
+:::danger
+At this point, you should make ***extra*** sure that you are not overriding
+someone else's work. If there is even a hint of doubt, ask someone to double
+check for you.
+
+This is **NOT** a command you should use typically.
+:::
+
+If you are absolutely sure that you want to proceed regardless, run `git push`
+with `--force` or `-f`. This tells GitHub to ignore the changes on remote
+completely and that your changes are the right ones. If you have sufficient
+permissions (which you should have for your own PR branch), this will succeed.
+
+#### Option 3: Hard reset
+
+This approach is straightforward. It resets **all** the changes you have back
+to the state that your computer thinks is on GitHub.
+
+:::caution
+This will rollback all the changes to fit the pushed version.
+:::
+
+To do so, use [`git reset --hard`][git-reset].
+
+```
+$ git reset --hard origin/docs/SCSE-24
+HEAD is now at f253a79 docs: Fix typo in Example docs
+```
+
+
+[git-link]: https://git-scm.com/
+[git-doc]: https://git-scm.com/doc
+[git-init]: https://git-scm.com/docs/git-init
+[git-clone]: https://git-scm.com/docs/git-clone
+[git-status]: https://git-scm.com/docs/git-status
+[git-add]: https://git-scm.com/docs/git-add
+[git-rm]: https://git-scm.com/docs/git-rm
+[git-commit]: https://git-scm.com/docs/git-commit
+[git-switch]: https://git-scm.com/docs/git-switch
+[git-checkout]: https://git-scm.com/docs/git-checkout
+[git-branch]: https://git-scm.com/docs/git-branch
+[git-pull]: https://git-scm.com/docs/git-pull
+[git-push]: https://git-scm.com/docs/git-push
+[git-reset]: https://git-scm.com/docs/git-reset
+
+[pro-git-chap-3]: https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell
+[create-github-repo]: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository
