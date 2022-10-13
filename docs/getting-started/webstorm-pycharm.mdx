@@ -11,19 +11,44 @@ import OsTabs from "@site/src/components/DocsFeatures/OsTabs.tsx"
 Rather than using VS Code, we recommend using Webstorm for javascript/typescript projects,
 and using Pycharm Professional for python projects.
 
-
-
-## Installing the IDEs
-
 Once you have obtained your student license, you can visit your [jetbrains account](https://account.jetbrains.com/) to
 download Webstorm and Pycharm.
 
-![Pycharm Download](./img/webstorm-pycharm/pycharm_download.png)
+## Installing Webstorm
+
 ![Webstorm Download](./img/webstorm-pycharm/webstorm_download.png)
 
+```mdx-code-block
+import WebstormWindows from "./webstorm_markdown/_webstorm-windows.mdx"
+import WebstormMacOS from "./webstorm_markdown/_webstorm-mac.mdx"
+import WebstormLinux from "./webstorm_markdown/_webstorm-linux.mdx"
 
-## Renewing your License
+<OsTabs
+    windows={<WebstormWindows />}
+    macos={<WebstormMacOS />}
+    linux={<WebstormLinux />}
+/>
+```
 
-:::note
-todo
-:::
+## Installing Pycharm
+
+![Pycharm Download](./img/webstorm-pycharm/pycharm_download.png)
+
+```mdx-code-block
+import PycharmWindows from "./pycharm_markdown/_pycharm_windows.mdx"
+import PycharmMacOS from "./pycharm_markdown/_pycharm_mac.mdx"
+import PycharmLinux from "./pycharm_markdown/_pycharm_linux.mdx"
+
+<OsTabs
+    windows={<PycharmWindows />}
+    macos={<PycharmMacOS />}
+    linux={<PycharmLinux />}
+/>
+```
+
+## Link your JetBrains License
+
+If not already linked, open your IDEs and activate your student license by logging in with the email
+used to create the JetBrains License
+
+
