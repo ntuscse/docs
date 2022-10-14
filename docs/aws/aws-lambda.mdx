@@ -63,7 +63,8 @@ supported languages.
    def lambda_handler(event, context):                                      
      for i in status["InstanceStatuses"]:                                    
          if i["InstanceStatus"] == "running":                                
-             client.stop_instances(InstanceIds=i["InstanceId"])```              
+             client.stop_instances(InstanceIds=i["InstanceId"])
+```              
 
 
 
