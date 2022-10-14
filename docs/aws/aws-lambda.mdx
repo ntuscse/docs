@@ -17,7 +17,7 @@ themselves, the FaaS model provides an event-driven execution model, where users
 autoscaling is performed based on needs and the user only pays for what they use. Most cloud providers have some form of FaaS service, and Lambda is AWS's FaaS service.
 
 With AWS Lambda, the apps are only launched as needed, as opposed to running a EC2 instance persistently. This provides some serious advantages, one of them being
-that the app is only launched when an event(API request, or a client request) triggers the app to run, and the cloud provider will dynamically handle the resource
+that the app is only launched when an event (API request, or a client request) triggers the app to run, and the cloud provider will dynamically handle the resource
 allocation for the code to serve all requests efficiently. The app will stop running once the requests have been served, and the user will only be charged for the
 duration of runtime. Not only does AWS Lambda have clear efficiency and cost benefits, it also abstracts away the processes of operating system maintenance,
 security patching, logging, server provisioning, load balancing to the cloud provider, so YOU, the app developer can simply focus on developing your app.
