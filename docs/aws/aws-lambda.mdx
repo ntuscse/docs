@@ -101,7 +101,7 @@ go ahead and choose Schedule expression.
 automatic job scheduling. Enter this exact CRON expression to achieve the desired schedule "cron(59 11 * * ? 2022-2024)" without the quotes. For more information
 about writing Cron expressions in AWS, check out [AWS Cron Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
 13. At this point, your AWS Lambda function is complete, and ready to be deployed. Head back to the Lambda function page, and click on Deploy. Note: you may or may not
-be able to actually deploy the LAmbda function based on the level of permissions provided to your IAM identity. Contact your System Administrator for more information.
+be able to actually deploy the Lambda function based on the level of permissions provided to your IAM identity. Contact your System Administrator for more information.
 
 With this, we've seen the lifecycle of deploying an AWS Lambda function. While the function logic and event triggers of your functions may be very different, the
 general workflow is the same as described. Note that there are more options for setting Triggers other than EventBridge, like S3, Kafka, and API Gateway among many more
