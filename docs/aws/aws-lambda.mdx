@@ -6,7 +6,7 @@ sidebar_position: 5
 
 Let's dive into what AWS Lambda is, how you can use it, why you should use it, and some important points to remember while using it.
 
-# . What is AWS Lambda?
+#  What is AWS Lambda?
 
 In recent years, serverless computing paradigms have become increasingly popular for organizations and companies to develop and deploy their applications.
 But, what is serverlss computing? Does there mean there are no servers involved? Well, serverless computing still has servers to host application data for deployment,
@@ -22,7 +22,7 @@ allocation for the code to serve all requests efficiently. The app will stop run
 duration of runtime. Not only does AWS Lambda have clear efficiency and cost benefits, it also abstracts away the processes of operating system maintenance,
 security patching, logging, server provisioning, load balancing to the cloud provider, so YOU, the app developer can simply focus on developing your app.
 
-# . How does AWS Lambda work?
+#  How does AWS Lambda work?
 
 Now that we've takena look at some functionalities offered by AWS Lambda, how exactly does it work, and how can you, as an app or API developer leverage the 
 functionlities of AWS Lambda?
@@ -41,7 +41,7 @@ SGT every night, to check for any running EC2 instances and automatically shut t
 
 The process of using AWS Lambda can be decoupled into two parts:
 
-# .  Writing the Lambda function
+#   Writing the Lambda function
 
 AWS Lambda provides support for most general purpose programming languages, from Python, Go, Java, JavaScript and Ruby. As mentioned earlier, the Lambda function 
 is an actual function, that represents the logic of the task you want to peform, essentially, in the function body you will code what you want the Lambda function
@@ -64,6 +64,32 @@ supported languages.
 |        if i["InstanceStatus"] == "running":                                |
 |            client.stop_instances(InstanceIds=i["InstanceId"])              |
 +----------------------------------------------------------------------------+
+
++----------------------------------------+-----------------------------------------+-----------------------------------------+
+|.. code-block:: python                  |.. code-block:: python                   |.. code-block:: python                   |
+|                                        |                                         |                                         |
+| class Network(ivy.module)              | def clean(x, w, b):                     | def unclean(x, w, b):                   |
+|                                        |     return w*x + b                      |     y = b + w + x                       |
+|     def __init__(self):                |                                         |     print('message')                    |
+|         self._layer = ivy.Linear(3, 3) |                                         |     wx = w * x                          |
+|         super().__init__()             |                                         |     ret = wx + b                        |
+|                                        |                                         |     temp = y * wx                       |
+|     def _forward(self, x):             |                                         |     return ret                          |
+|         return self._layer(x)          |                                         |                                         |
+|                                        | # input                                 | # input                                 |
+| # build network                        | x = ivy.array([1., 2., 3.])             | x = ivy.array([1., 2., 3.])             |
+| net = Network()                        | w = ivy.random_unifrom(                 | w = ivy.random_unifrom(                 |
+|                                        |     -1, 1, (3, 3))                      |     -1, 1, (3, 3))                      |
+| # input                                | b = ivy.zeros((3,))                     | b = ivy.zeros((3,))                     |
+| x = ivy.array([1., 2., 3.])            |                                         |                                         |
+|                                        | # compile graph                         | # compile graph                         |
+| # compile graph                        | graph = ivy.compile_graph(              | graph = ivy.compile_graph(              |
+| net.compile_graph(x)                   |     clean, x, w, b)                     |     unclean, x, w, b)                   |
+|                                        |                                         |                                         |
+| # execute graph                        | # execute graph                         | # execute graph                         |
+| net(x)                                 | graph(x, w, b)                          | graph(x, w, b)                          |
++----------------------------------------+-----------------------------------------+-----------------------------------------+
+
 
 The function can be given any name, in this case we just call it event_handler and define it just like any other function. Each function must take as argument
 event and context, which represent the particular event that triggers the Lambda function and the context under which the lambda function is triggered. While it 
