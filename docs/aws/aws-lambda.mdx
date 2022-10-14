@@ -96,7 +96,7 @@ functions on all test cases before deploying them.
 that monitors events at periodic times in the AWS console, which is relevant for us since ourt Lambda function is periodic too.
 10. Click on Create New rule. Enter a relevant rule name and description. This rule will define the schedule of our Lambda function.
 11. You'll find options between Event pattern or Schedule expression. Since our Lambda function is essentially a scheduled function to run at midnight everyday,
-go ahead and chooe Schedule expression.
+go ahead and choose Schedule expression.
 12. Now we need to add a schedule expression which defines the schedule of the function. To do this, we'll use CRON, which is a Unix system utility used for
 automatic job scheduling. Enter this exact CRON expression to achieve the desired schedule "cron(59 11 * * ? 2022-2024)" without the quotes. For more information
 about writing Cron expressions in AWS, check out [AWS Cron Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
