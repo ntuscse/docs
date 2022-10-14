@@ -31,10 +31,10 @@ As mentioned before, AWS Lambda is a event-driven execution model. Specifically,
 like Python or Go which achieve the desired logic. These functions would then be run on lightweight containers whenever an event triggers these functions to run.
 The containers are:
 
-* Stateless- any changes made to the container during execution are not saved after container is shut down. They do not store state.
-* Ephemeral- they run for a very short time during execution and do not store any state
-* Event-Triggered- they run only when the associated event triggers them(we'll look at this in depth later in the doc)
-* Fully managed- they are managed by the cloud provider, which means the app developer does not have to create Container Images or monitor the health of the containers.
+* Stateless - any changes made to the container during execution are not saved after container is shut down. They do not store state.
+* Ephemeral - they run for a very short time during execution and do not store any state
+* Event-Triggered - they run only when the associated event triggers them(we'll look at this in depth later in the doc)
+* Fully managed - they are managed by the cloud provider, which means the app developer does not have to create Container Images or monitor the health of the containers.
 
 Let's take a look at a hands on example at how an app developer can write Lambda functions. The example here is a Lambda function which is triggered at 11:59 PM
 SGT every night, to check for any running EC2 instances and automatically shut them down, to reduce unnecessary costs.
