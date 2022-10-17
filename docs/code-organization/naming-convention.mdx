@@ -1,0 +1,77 @@
+---
+sidebar_position: 2
+---
+
+# Naming Convention
+
+This page contains naming conventions for commit messages and branches.
+
+## Commit Messages
+
+Commit message titles should be in the form `type: Short description of the
+change` or `type(subsystem): Short description of the change` as per
+[Conventional Commits][conventional-commit].
+
+Furthermore, the ticket number from the [Linear](../getting-started/linear)
+task (if applicable) should be contained at the bottom of the commit message
+body.
+
+Types may include:
+- `feat`: New feature
+- `fix`: Bug fix of an existing feature
+- `chore`: Changes that are otherwise a chore (bumping a version)
+- `docs`: Documentation changes
+- `refactor`: Change in code for code quality that should not affect functionality
+
+Here is an example of a good commit message:
+
+```
+feat(payment): Add Stripe checkout
+
+This commit adds Stripe integration to the payment page.
+
+The endpoint `/stripe_webhook` has been added to listen to Stripe events and
+handle payment fulfillment. This endpoint should only be called by Stripe and
+validation has been added to verify requests.
+
+While deploying the change, the STRIPE_API_KEY and STRIPE_WEBHOOK_SECRET
+environment variable should be set to the secret key and webhook secret
+available at Stripe dashboard respectively.
+
+[SCSE-24]
+```
+
+It can be replicated with the following command:
+
+```
+git commit -m "feat(payment): Add Stripe checkout" -m "This commit... [SCSE-24]"
+```
+
+Each commit should be mostly self-contained and changes to previous commits
+(that are not already merged) should not be separate.
+
+Here are some examples of commit titles that do not fit the criteria:
+
+- `add more changes` - Undescriptive commit message
+- `please review thanks` - Undescriptive commit message
+- `14/10/2022 changes` - Undescriptive commit message
+- `fix: Fix more things` - Short description doesn't describe what commit does
+- `add Stripe integration` - This commit message is very close but is lacking
+  the type at the front
+- `fix: Fix compilation issue`, `fix: Fix compilation issue 2`, `fix: Really
+  fix compilation issue` - These commits should be merged into a previous commit
+  rather than stand on their own
+
+## Branch Names
+
+Branch names of `type/ticket-ID` should be used if a ticket ID is available
+(eg. `fix/SCSE-24`). Otherwise, a descriptive title should be provided in place
+of the ticket ID (eg. `fix/git-documentation`).
+
+`main` is exclusively reserved for the latest working copy of the code that
+developers should base their work off of.
+
+Release branches such as `v1.0` may be created for the purpose of maintaining
+hotfixes (`v1.0.0`, `v1.0.1`, `v1.0.2`, ...).
+
+[conventional-commit]: https://www.conventionalcommits.org/en/v1.0.0/

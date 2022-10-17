@@ -41,6 +41,8 @@
     ]
   },
   "engines": {
-    "node": ">=16.14"
+    "node": ">=16.14",
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.19.1"
   }
 }
