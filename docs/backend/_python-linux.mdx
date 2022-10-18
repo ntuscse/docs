@@ -1,0 +1,36 @@
+### Ubuntu
+
+[deadsnakes PPA](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa) contains more recent Python versions packaged for Ubuntu.
+
+```bash
+$ sudo apt-get install software-properties-common
+$ sudo add-apt-repository ppa:deadsnakes/ppa
+$ sudo apt-get update
+$ sudo apt-get install python3.8
+```
+
+### Other Linux distribution
+
+If you are using other Linux distribution, `Python 3` is most likely preinstalled. If not, use your distribution's package manager to install it.
+
+For example, on Fedora, you would use `dnf`:
+
+```bash
+$ sudo dnf install python3
+```
+
+And on ArchLinux, you would use `pacman`:
+
+```bash
+$ sudo pacman -S python
+```
+
+To check if it is installed correctly:
+
+```bash
+python --version
+# Python 3.10.7
+# OR
+py --version
+#Python 3.10.7
+```

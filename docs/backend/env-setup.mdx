@@ -4,6 +4,32 @@ sidebar_position: 1
 
 # Environment Setup
 
+```mdx-code-block
+import OsTabs from "@site/src/components/DocsFeatures/OsTabs.tsx"
+```
+
 Backend devs should have the following installed and configured as described below:
 
-## Python 3.x
+## Install `Python 3.x`
+
+```mdx-code-block
+import PythonWindows from "./_python-windows.mdx"
+import PythonMacOS from "./_python-macos.mdx"
+import PythonLinux from "./_python-linux.mdx"
+
+<OsTabs
+    windows={<PythonWindows />}
+    macos={<PythonMacOS />}
+    linux={<PythonLinux />}
+/>
+```
+
+## Install `poetry`
+
+## Install `nvm` & `node.js`
+
+Follow the instructions to install `nvm` & `node.js` [here](/docs/getting-started/node-nvm)
+
+## Install serverless cli
+
+## Install dynamodb offline
