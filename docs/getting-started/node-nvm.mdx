@@ -6,41 +6,20 @@ sidebar_position: 2
 
 ## How to Install NVM
 
-### Uninstall Node.js(if you have it installed outside of nvm)
+```mdx-code-block
+import OsTabs from "@site/src/components/DocsFeatures/OsTabs.tsx"
+import NvmWindows from "./_node-nvm/_node-nvm-windows.mdx"
+import NvmMacOS from "./_node-nvm/_node-nvm-macos.mdx"
+//import NvmLinux from "./_node-nvm/_node-nvm-linux.mdx"
 
-1. In search on the taskbar, enter Control Panel and select it from the results.
-
-2. Select **Programs** > **Programs and Features.**
-
-3. Press and hold (or right-click) on the program (Node.js) you want to remove and select **Uninstall**. Then follow the directions on the screen.
-
-
-### Installing the NVM 
-
-1. Head over to the [nvm-windows repository](https://github.com/coreybutler/nvm-windows#installation--upgrades). Scroll down to the README.md and click on **Download Now !**
-
-    ![Download Now](./img/nvm_download.png)
-
-2. You now can find the latest version of nvm-windows and download it!
-
-    ![Download the file *nvm-setup.exe*](./img/nvm_setup.png)
-
-3. Locate the installer on your computer and open it. Follow the installation wizard to install it. 
-
-4. Open up PowerShell or Command Prompt and run ` nvm -v ` to confirm the installation.
-
-5. You are good to go! 
-
-
-## How to Use NVM 
-
-:::info
-To use NVM, you need to open PowerShell or Command Prompt as an admin. You can also use Git bash.
-:::
-
+<OsTabs
+    windows={<NvmWindows />}
+    macos={<NvmMacOS />}
+/>
+```
 ### Install Node using NVM
 
-To install the latest version of Node, run: 
+To install the latest version of Node, run:
 ```
 nvm install latest
 ```
@@ -52,7 +31,7 @@ Run the following command in your terminal:
 nvm list available
 ```
 
-You will see this after running the command above: 
+You will see this after running the command above:
 
 ![List of different versions of Node](./img/node_version_list.png)
 
@@ -77,7 +56,7 @@ nvm current
 
 Run the following command in your terminal:
 ```
-nvm list 
+nvm list
 ```
 
 ### Switch between different versions of Node
