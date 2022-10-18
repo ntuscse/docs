@@ -2,17 +2,25 @@
 sidebar_position: 2
 ---
 
-# NVM and Node.Js
+# NVM and Node.js
 
-## Uninstall Node.Js(if you have it installed outside of nvm)
+## Uninstall Node.js(if you have it installed outside of nvm)
 
 Try to look for your current node.js file in `C:\Program Files` and uninstall it.
 
 
 ## Installing the NVM 
 
-Head over to the [NVM Setup](https://www.freecodecamp.org/news/nvm-for-windows-how-to-download-and-install-node-version-manager-in-windows-10/) and follow all the guidelines and intructions
+- Step 1: Head over to the [nvm-windows repository](https://github.com/coreybutler/nvm-windows#installation--upgrades) and click on **Download Now**
 
+- Step 2: Find the latest version of nvm-windows and download it.
+![Download the file *nvm-setup.exe*](./img/nvm_setup.png)
+
+- Step 3: Locate the installer on your computer and open it. Follow the installation wizard to install it. 
+
+- Step 4: Open up PowerShell or Command Prompt and run `nvm -v` to confirm the installation.
+
+- Step 5: You are good to go! 
 
 :::Note
 To use NVM, you need to open PowerShell or Command Prompt as an admin. You can also use Git bash.
@@ -25,23 +33,31 @@ To install the latest version of Node, run:
 nvm install latest
 ```
 
+## Check the list of available versions
+
+Run the following command in your terminal:
+```
+nvm list available
+```
+
+You will see this after running the command above: 
+![List of different versions of Node](./img/node_version_list.png)
+
 You can also install different versions of Node:
 ```
 nvm install node-version-number
+nvm install 18.9.1
 ```
+
+:::Note
+Once you install a version of Node, the corresponding version of NPM is installed for you. So you don’t need to install NPM separately.
+:::
 
 ## Check your current version of Node
 
 Run the following command in your terminal:
 ```
 nvm current
-```
-
-## Check the list of available versions
-
-Run the following command in your terminal:
-```
-nvm list available
 ```
 
 ## Check the list of different versions of Node installed
@@ -56,5 +72,5 @@ nvm list
 Run the following command in your terminal:
 ```
 nvm use latest
-nvm use node-version-number
+nvm use 17.7.1
 ```
