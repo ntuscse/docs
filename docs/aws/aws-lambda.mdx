@@ -8,13 +8,15 @@ Let's dive into what AWS Lambda is, how you can use it, why you should use it, a
 The documentation is written from the persepctive of a reader who is completely new to serverless computing and AWS Lambda, and so there are some sections that may
 be irrelevant for some readers based on their prior experience with AWS Lambda, so feel free to navigate the sections based on your current knowledge of the service.
 
-##  What is AWS Lambda?
+## What is AWS Lambda?
 
 In recent years, serverless computing paradigms have become increasingly popular for organizations and companies to develop and deploy their applications.
 But, what is serverless computing? Does it mean there are no servers involved? Well, serverless computing still has servers to host application data for deployment,
 however it abstracts away the need to manage servers for application developers. How it achieves this is by providing FaaS (Function as a Service) platform whereby 
 app developers can simply write cloud native functions in a higher level general purpose language, like Python or Go, to automate tasks of autoscaling or software
-patches. As opposed to IaaS (Infrastructure as a Service) models, where users must prepurchase units of compute like VM's and perform autoscaling and load balancing
+patches. 
+
+As opposed to IaaS (Infrastructure as a Service) models, where users must prepurchase units of compute like VM's and perform autoscaling and load balancing
 themselves, the FaaS model provides an event-driven execution model, where users need not prepurchase or manually scale any units of compute, but rather 
 autoscaling is performed based on needs and the user only pays for what they use. Most cloud providers have some form of FaaS service, and Lambda is AWS's FaaS service.
 
@@ -24,12 +26,12 @@ allocation for the code to serve all requests efficiently. The app will stop run
 duration of runtime. Not only does AWS Lambda have clear efficiency and cost benefits, it also abstracts away the processes of operating system maintenance,
 security patching, logging, server provisioning, load balancing to the cloud provider, so YOU, the app developer can simply focus on developing your app.
 
-##  How does AWS Lambda work?
+## How does AWS Lambda work?
 
 Now that we've taken a look at some functionalities offered by AWS Lambda, how exactly does it work, and how can you, as an app or API developer leverage the 
 functionalities of AWS Lambda?
 
-As mentioned before, AWS Lambda is a event-driven execution model. Specifically, the user would write Lambda functions in a higher level programming language,
+As mentioned before, AWS Lambda features an event-driven execution model. Specifically, the user would write Lambda functions in a higher level programming language,
 like Python or Go which achieve the desired logic. These functions would then be run on lightweight containers whenever an event triggers these functions to run.
 The containers are:
 
@@ -38,88 +40,20 @@ The containers are:
 * Event-Triggered - they run only when the associated event triggers them (we'll look at this in depth later in the doc)
 * Fully managed - they are managed by the cloud provider, which means the app developer does not have to create Container Images or monitor the health of the containers.
 
-Let's take a look at a hands on example at how an app developer can write Lambda functions. The example here is a Lambda function which is triggered at 11:59 PM
-SGT every night, to check for any running EC2 instances and automatically shut them down, to reduce unnecessary costs.
+## How does Lambda link to other AWS services?
 
-The process of using AWS Lambda can be decoupled into two parts:
+If you're using Lambda for serverless computing, chances are you're going to be using services like API Gateway to serve backend API's and AWS Cognito to perform
+user authentication. Let's take a look at how AWS Lambda links with API Gateway.
 
-##   Writing the Lambda function
+As an API developer, you can create a HTTP endpoint to serve your Lambda function, using API Gateway. Essentially, you write the desired logic of your API as a 
+serverless Lambda function, and use API Gateway to direct HTTP requests to the Lambda function, which can serve your web API.
 
-AWS Lambda provides support for most general purpose programming languages, from Python, Go, Java, JavaScript and Ruby. As mentioned earlier, the Lambda function 
-is an actual function, that represents the logic of the task you want to peform, essentially, in the function body you will code what you want the Lambda function
-to do once triggered. In our example, we want the Lambda function to check whether any EC2 instances are currently running, and if so, then shut them down.
-Since our function is an offline task, a brute force search of all the EC2 instances will suffice, however, as an app or API developer you may want to consider
-the runtime complexity of your Lambda functions for online execution tasks. We'll use Python to code our Lambda function, but you can write the logic in any of the 
-supported languages.
+While the implementation of the below tasks will differ based on the API, the general tasks to integrate API Gateway with Lambda are as follows:
+1. Add a public endpoint to your Lambda function using API Gateway - This is the endpoint to API Gateway will direct HTTP requests.
+2. Proxy integration - this relates to the task of setting up the correct paths and proxies to the public endpoint, and specifying the HTTP method (GET, POST).
+3. Define the event format - API Gateway synchronously triggers your Lambda function, thus a JSON event needs to be defined.
 
-
-```python:
-
-   import boto3                                                               
-                                                                            
-   region = "singapore"                                                      
-                                                                            
-   client = boto3.client('ec2', region_name=region)                          
-                                                                            
-   status = client.describe_instance_status(IncludeAllInstances=True)        
-   def lambda_handler(event, context):                                      
-     for i in status["InstanceStatuses"]:                                    
-         if i["InstanceStatus"] == "running":                                
-             client.stop_instances(InstanceIds=i["InstanceId"])
-```              
-
-
-
-The function can be given any name, in this case we just call it event_handler and define it just like any other function. Each function must take as argument
-event and context, which represent the particular event that triggers the Lambda function and the context under which the Lambda function is triggered. While it 
-is not necessary to use these arguments in the function body, nonetheless, every Lambda function must have these as function arguments. A Lambda function may 
-have more arguments too, depending upon the nature of the event that triggers it. The logic of the function is pretty simple. We perform a brute force search of all
-EC2 instances using boto3, an AWS SDK for Python, and of those that are running, we stop those instances. We'll save this as a Python file.
-
-##   Deploying the Lambda function
-
-Now that we've defined the logic of the Lambda function, it's time to deploy it.
-
-1. Head on over to the AWS Console and login with your SCSE account.
-
-2. Go to the AWS Lambda page by searching on the search bar.
-
-3. Click on Create Function on the top right
-
-4. You'll see multiple options to deploy the function. This also includes deploying a container image or choosing from available Lambda function repos. While
-these options might be relevant during API or app deployment, for our use case we will simply choose Author from Scratch.
-
-5. Name your Lambda function. Note that it is not necessary to name the Lambda function the same as the underlying function, it is best practice to name a Lambda
-function in a manner that clearly describes its purpose.
-
-6. Choose Python as your runtime, since this is a Python function.
-
-7. Choose the default IAM Role, however, for other Lambda functions the user can configure new IAM Roles or choose existing ones to limit the permissions and 
-access of the Lambda function.
-
-8. Now that your Lambda function is created, we need to add an Event rule which dictates when the Lambda function will be triggered. Click on your Lambda function
-and click on Test to test your function. If everything goes fine, you should see status Successful. Additionally if you want, you could actually try running EC2 
-instances and Testing the Lambda function to see if the function actually stops the instances or not. It is a best practice to thoroughly test your Lambda
-functions on all test cases before deploying them.
-
-9. On the top left corner, you will find a button for Add Trigger. Click on that, and select EventBridge as the trigger. AWS EventBridge is another service
-that monitors events at periodic times in the AWS console, which is relevant for us since our Lambda function is periodic too.
-
-10. Click on Create New rule. Enter a relevant rule name and description. This rule will define the schedule of our Lambda function.
-
-11. You'll find options between Event pattern or Schedule expression. Since our Lambda function is essentially a scheduled function to run at midnight everyday,
-go ahead and choose Schedule expression.
-
-12. Now we need to add a schedule expression which defines the schedule of the function. To do this, we'll use CRON, which is a Unix system utility used for
-automatic job scheduling. Enter this exact CRON expression to achieve the desired schedule "cron(59 11 * * ? 2022-2024)" without the quotes. For more information
-about writing Cron expressions in AWS, check out [AWS Cron Expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
-
-13. At this point, your AWS Lambda function is complete, and ready to be deployed. Head back to the Lambda function page, and click on Deploy. Note: you may or may not
-be able to actually deploy the Lambda function based on the level of permissions provided to your IAM identity. Contact your System Administrator for more information.
-
-With this, we've seen the lifecycle of deploying an AWS Lambda function. While the function logic and event triggers of your functions may be very different, the
-general workflow is the same as described. Note that there are more options for setting Triggers other than EventBridge, like S3, Kafka, and API Gateway among many more
-that may be relevant to your use case.
+On top of these configurations, there are many more options while integrating API Gateway and Lambda, that may be useful for your application/API.
 
 ## Why and When to use AWS Lambda?
 
