@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-const OsTabs = ({windows, macos, linux}) => {
+interface OsTabsProps {
+  windows?: ReactNode;
+  macos?: ReactNode;
+  linux?: ReactNode;
+}
+
+const OsTabs = ({windows, macos, linux}: OsTabsProps) => {
   return <Tabs groupId="operating-systems">
-    <TabItem value="win" label="Windows">
+    {windows ? <TabItem value="win" label="Windows">
       {windows}
-    </TabItem>
-    <TabItem value="mac" label="macOS">
+    </TabItem> : null}
+    {macos ? <TabItem value="mac" label="macOS">
       {macos}
-    </TabItem>
-    <TabItem value="linux" label="Linux">
+    </TabItem> : null}
+    {linux ? <TabItem value="linux" label="Linux">
       {linux}
-    </TabItem>
+    </TabItem> : null}
   </Tabs>
 }
 
