@@ -4,21 +4,32 @@ sidebar_position: 1
 
 # Environment Setup
 
-Frontend devs should have the following installed and configured as described below:
+Frontend developers should have the following installed and configured as described below:
 
-## NVM (Node version manager)
+## Installing NVM (Node version manager)
 
 :::danger
-Do not install node.js outside of nvm. if you have node.js installed,
-you should uninstall it before proceeding with the nvm install
+Do not install Node.js outside of NVM. if you have Node.js installed,
+you should uninstall it before proceeding with the NVM install
 :::
 
+To install NVM, follow the instructions listed [here](/docs/getting-started/node-nvm)
 
-## Yarn v1
 
-Install yarn from [here](https://classic.yarnpkg.com/en/docs/install)
+## Installing Yarn v1
+:::danger
+Make sure that you have installed Node.js via NVM before proceeding!
+:::
+```
+npm install --global yarn
+```
 
-## React config
+## Installing Webstorm
+To install Webstorm, follow the instructions listed [here](/docs/getting-started/webstorm-pycharm)
+
+## Installing React Developer Tools
+Install React Developer Tools on your preferred browser - [Google Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [FireFox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) or [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
+## React Config
 
 Add `export REACT_EDITOR=webstorm` to your zshrc/bash_profile to open
 webstorm via react error messages
