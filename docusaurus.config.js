@@ -60,7 +60,7 @@ const config = {
         title: 'NTU SCSE',
         logo: {
           alt: 'NTU SCSE Logo',
-          src: 'img/logo.svg',
+          src: 'img/scselogo.png',
         },
         items: [
           {
