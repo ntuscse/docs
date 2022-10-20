@@ -2,22 +2,35 @@
 sidebar_position: 1
 ---
 
+import PythonSetup from './_python-setup/index.mdx';
+import PeotrySetup from './_peotry-setup/index.mdx';
+import DynamoDBSetup from './_dynamodb-offline-setup/index.mdx';
+import ServerlessCLISetup from './_serverless-cli-setup/index.mdx';
+
 # Environment Setup
 
 Backend devs should have the following installed and configured as described below:
 
-```mdx-code-block
-import PythonSetup from './_python-setup/index.mdx'
-import PeotrySetup from './_peotry-setup/index.mdx'
+## Install `Python 3.x`
 
 <PythonSetup />
+
+## Install `poetry`
+
 <PeotrySetup />
-```
 
 ## Install `nvm` & `node.js`
 
 Follow the instructions to install `nvm` & `node.js` [here](/docs/getting-started/node-nvm)
 
-## Install serverless cli
+:::info Reminder
+Use nvm to switch between versions of `node.js` across projects
+:::
 
-## Install dynamodb offline
+## Install `serverless` cli
+
+<ServerlessCLISetup />
+
+## Install `dynamodb` offline
+
+<DynamoDBSetup />
