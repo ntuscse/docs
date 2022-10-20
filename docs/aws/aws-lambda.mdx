@@ -3,3 +3,76 @@ sidebar_position: 5
 ---
 
 # AWS Lambda
+
+Let's dive into what AWS Lambda is, how you can use it, why you should use it, and some important points to remember while using it.
+The documentation is written from the perspective of a reader who is completely new to serverless computing and AWS Lambda, and so there are some sections that may
+be irrelevant for some readers based on their prior experience with AWS Lambda, so feel free to navigate the sections based on your current knowledge of the service.
+
+## What is AWS Lambda?
+
+In recent years, serverless computing paradigms have become increasingly popular for organizations and companies to develop and deploy their applications.
+But, what is serverless computing? Does it mean there are no servers involved? Well, serverless computing still has servers to host application data for deployment,
+however it abstracts away the need to manage servers for application developers. How it achieves this is by providing FaaS (Function as a Service) platform whereby 
+app developers can simply write cloud native functions in a higher level general purpose language, like Python or Go, to automate tasks of autoscaling or software
+patches. 
+
+As opposed to IaaS (Infrastructure as a Service) models, where users must prepurchase units of compute like VM's and perform autoscaling and load balancing
+themselves, the FaaS model provides an event-driven execution model, where users need not prepurchase or manually scale any units of compute, but rather 
+autoscaling is performed based on needs and the user only pays for what they use. Most cloud providers have some form of FaaS service, and Lambda is AWS's FaaS service.
+
+With AWS Lambda, the apps are only launched as needed, as opposed to running a EC2 instance persistently. This provides some serious advantages, one of them being
+that the app is only launched when an event (API request, or a client request) triggers the app to run, and the cloud provider will dynamically handle the resource
+allocation for the code to serve all requests efficiently. The app will stop running once the requests have been served, and the user will only be charged for the
+duration of runtime. Not only does AWS Lambda have clear efficiency and cost benefits, it also abstracts away the processes of operating system maintenance,
+security patching, logging, server provisioning, load balancing to the cloud provider, so YOU, the app developer can simply focus on developing your app.
+
+## How does AWS Lambda work?
+
+Now that we've taken a look at some functionalities offered by AWS Lambda, how exactly does it work, and how can you, as an app or API developer leverage the 
+functionalities of AWS Lambda?
+
+As mentioned before, AWS Lambda features an event-driven execution model. Specifically, the user would write Lambda functions in a higher level programming language,
+like Python or Go which achieve the desired logic. These functions would then be run on lightweight containers whenever an event triggers these functions to run.
+The containers are:
+
+* Stateless - any changes made to the container during execution are not saved after container is shut down. They do not store state.
+* Ephemeral - they run for a very short time during execution and do not store any state
+* Event-Triggered - they run only when the associated event triggers them (we'll look at this in depth later in the doc)
+* Fully managed - they are managed by the cloud provider, which means the app developer does not have to create Container Images or monitor the health of the containers.
+
+## How does Lambda link to other AWS services?
+
+If you're using Lambda for serverless computing, chances are you're going to be using services like API Gateway to serve backend API's and AWS Cognito to perform
+user authentication. Let's take a look at how AWS Lambda links with API Gateway.
+
+As an API developer, you can create a HTTP endpoint to serve your Lambda function, using API Gateway. Essentially, you write the desired logic of your API as a 
+serverless Lambda function, and use API Gateway to direct HTTP requests to the Lambda function, which can serve your web API.
+
+While the implementation of the below tasks will differ based on the API, the general tasks to integrate API Gateway with Lambda are as follows:
+1. Add a public endpoint to your Lambda function using API Gateway - This is the endpoint to API Gateway will direct HTTP requests.
+2. Proxy integration - this relates to the task of setting up the correct paths and proxies to the public endpoint, and specifying the HTTP method (GET, POST).
+3. Define the event format - API Gateway synchronously triggers your Lambda function, thus a JSON event needs to be defined.
+
+On top of these configurations, there are many more options while integrating API Gateway and Lambda, that may be useful for your application/API.
+
+## Why and When to use AWS Lambda?
+
+Now that we've looked at what AWS Lambda is and how you can create serverless routines for your application, it's time to take a look at where and under what use cases
+using AWS Lambda will be beneficial.
+
+Specifically, you may want to look into Lambda if your app/API has:
+
+* reptitive scheduled tasks that must occur with a given schedule - these can be easily automated in a similar manner using AWS Lambda as we have demonstarted in the
+example above.
+
+* asynchronous requests - if your app or API services or calls requests asynchronously, then AWS Lambda functions can be used to trigger a certain routine based 
+on completion of some event.
+
+* Stateless - if your app is stateless, then you might consider using entirely Lambda to service your app.
+
+* Data aggregation - if your application is performing some data aggregation over a continuous stream of data, then AWS Lambda can be used to asynchronously
+aggregate data by a defined logic based on an input data stream from Amazon S3, or other apps/databases.
+
+While AWS Lambda and serverless computing provide a ton of cool features, nonetheless, Lambda is not the answer for all your needs. For example, larger apps that require
+state and do not have a defined schedule of execution but feature wide ranging features and modules might be better served using microservices and container
+orchestration.
