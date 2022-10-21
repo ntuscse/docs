@@ -1,4 +1,6 @@
-# Website
+# Docs Website
+
+[![Powered by Vercel Badge](static/img/powered-by-vercel.svg)][vercel-referral]
 
 Visit the docs website at [docs.ntuscse.com/docs](https://docs.ntuscse.com/docs)
 
@@ -23,3 +25,5 @@ This command starts a local development server and opens up a browser window. Mo
 ### Deployment
 
 Vercel will automatically deploy upon successful merge into the `main` branch
+
+[vercel-referral]: https://vercel.com/?utm_source=cse-it&&utm_campaign=oss
