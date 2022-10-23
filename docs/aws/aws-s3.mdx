@@ -19,7 +19,7 @@ which restrict access to certain objects under the bucket, and lifecylce policie
 For example, private files, artifacts and other confidential data can be stored under the same bucket which is configured to deny any HTTP requests and configured 
 with ACLs(Access Control Lists) which limit the read and write authorizations to a few chosen users within the same AWS Organization. This is not an exhaustive 
 list, and rather there are many such policies that can be configured on the bucket level to facilitate Access Management, explained in further detail here
-[AWS S# Bucket Policies](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html).
+[AWS S3 Bucket Policies](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html).
 
 ## Storage Classes
 
@@ -31,14 +31,14 @@ costs.
 Specifically, AWS S3 provides trhe following storage classes:
 
 1. S3 Standard: This is the cheapest tier resource for frequently accessed data that requires high availability.
-2. S3 Infreqeunt Access: This option is slighgtly cheaper than S3 Standard and perfect for data that is not very frequently accessed, but still requires reliable
+2. S3 Infreqeunt Access: This option is slightly cheaper than S3 Standard and perfect for data that is not very frequently accessed, but still requires reliable
 availability.
 3. S3 Infrequent Access One Zone: S3 buckets are automatically replicated across 3 Availbaility Zones to provide for fault tolerance in the face of data center
-failures. However, for less critical data, it is cheaper to use the One Zone tier, which onyl stores the data under the Availability Zone specified.
-4. S3 Glacier Deep Archive: This tiering is perfect for archival data that mistly consists of logs, backups etc, which requires very low availbility, high retrieval 
+failures. However, for less critical data, it is cheaper to use the One Zone tier, which only stores the data under the Availability Zone specified.
+4. S3 Glacier Deep Archive: This tiering is perfect for archival data that mostly consists of logs, backups etc, which requires very low availbility, high retrieval 
 times, and very cheap cost.
 5. S3 Intelligent Tiering: This storage class performs tiering automatically by surveying the access times and patterns of different data, and assigning the buckets
 to one of the above mentioned tiers, in order to optimize costs.
 
-AMazon S3 fits in well with the AWS Lambda offering using the S3 Batch operations. Depending upon your application, you may want to read up more about S3 Batch
+Amazon S3 fits in well with the AWS Lambda offering using the S3 Batch Operations. Depending upon your application, you may want to read up more about S3 Batch
 Operations here [S3 Batch Operations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html).
