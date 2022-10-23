@@ -3,3 +3,30 @@ sidebar_position: 7
 ---
 
 # AWS Cognito
+
+Amazon Cognito provides Amazon Cognito provides authentication, authorization, and user management for your web and mobile apps. 
+Your users can sign in directly with a user name and password, or through a third party such as Facebook, Amazon, Google or Apple. The two main components of 
+Amazon Cognito are user pools and identity pools. User pools are user directories that provide sign-up and sign-in options for your app users. 
+Identity pools enable you to grant your users access to other Amazon services. You can use identity pools and user pools separately or together.
+
+![Amazon Cognito](https://docs.amazonaws.cn/en_us/cognito/latest/developerguide/images/scenario-cup-cib2.png)
+
+## User pools
+
+A user pool is a user directory in Amazon Cognito. With user pools, users can sign into web and mobile apps through Amazon Cognito and other third party apps like 
+Facebook, Amazon, Google or Apple.
+
+User pools provide the following services:
+1. Sign up and sign in services
+2. Customizable Web UI for user authentication
+3. User directory management and user profiles
+4. Customized workflows and user migration through AWS Lambda.
+
+## Identity pools
+
+With identity pools, user can temporarily gain access to AWS services associated with your organization Like Amazon S3 and AMazon DynamoDB. For your use case, these
+users will be internal developers who will require access to certain services to develop their apps. For more information about your access span, contact your 
+system administrator.
+
+Amazon Cognito is a very efficient, secure, and easy to use authentication tool which is very commonly paired with AWS Lambda and API Gateway to build a serverless
+runtime environment to deliver apps.
