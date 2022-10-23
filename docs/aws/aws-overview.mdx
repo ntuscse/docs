@@ -4,6 +4,54 @@ sidebar_position: 1
 
 # AWS Overview
 
-:::caution
-This page is a work in progress
-:::
+Amazon Web Services is the most popular, and the largest (in terms of market share) web services and cloud platform in the world. But what does cloud really mean?
+And why is cloud, and AWS so popular in modern days? Before we dive into the AWS services, its worth exploring these questions.
+
+## What is Cloud?
+
+Cloud computing is a modern computing framework which aims to optimize the manner in which developers develop web applications. This is a bit vague, so let's
+dive deeper. Consider the pre-cloud days. if you wanted to build a web application, you would need to rent out servers at a data center. To do this, you'd need to
+raise a ticket with a data center, their sales rep would contact you in a few days, and within a week or so you'd finally have your servers. Since you were renting
+a dedicated server, you had to pay the entire cost of renting out the server, even if you didn't use the server the entire day. Moreover, if you needed to scale
+your application for high-traffic periods, you'd have to raise yet another ticket, to increase the RAM capacity or disk capacity, and wait for a few more days.
+What about fault tolerance? You'd have to implement it yourself. If your web applicatin was critical, you'd want to replicate it across different regions, which meant
+hiring yet another set of servers in another region, and manually writing protocols to ensure consistency across the two replicas(take it from a guy who works with 
+distributed systems, this is a major pain). Cloud computing brings with it 4 core ideologies:
+
+1. On demand: this means that as a web developer you can provision resources on demand, and not have to raise tickets and go through red tape procedures to rent
+servers. This on demand model also means that you only pay for what you use, and not for the entire duration of renting. 
+2. High availability: cloud services are designed in a manner such that they offer high availability to clients, so that there are virtually no downtimes experienced
+in your application.
+3. Autoscaling: Cloud computing allows for autoscaling of your resources, so that they can be automatically horizontally or vertically scaled within minutes of 
+experiencing varying traffic. This also means that in an ideal cloud environment you can scale up your resources within minutes if not seconds, as opposed to waiting
+for days to raise a support ticket.
+4. Fault tolerance: cloud services are meant to provide automatic fault tolerance for their services, so that the developer doesn't have to implement consistency
+protocols and provision replica servers themselves. This can make the application development process much easier for the developer, since distributed sytems are
+tricky to correctly implement and require a good knowledge in the field.
+
+Based on these 4, and other ideals, cloud computing paradigms were built, most of them by enterprise level tech companies like Amazon, Microsoft(Azure), Google(GCP),
+Oracle which provide web developers like you with an integrated envronment to go from idea to app in lightning speed.
+
+## How does AWS fit into Cloud
+
+Now that we have an elementary understanding of cloud, let's see how AWS services fit into the paradigm.
+AWS provides services under Availability Zones (AZ) which are essentially different global regions where the hardware for the resource is located. There are 81 Availability
+Zones spanned across the globe offered by AWS.
+![AWS Services](https://images.clickittech.com/2020/wp-content/uploads/2018/01/20201632/aws-services-1536x911.jpg)
+
+1. On demand: AWS provides EC2 (Elastic Cloud Compute) services, which are the basic unit of workloads under the AWS environment. These are Virtual Machines that can
+be spawned on demand within seconds based on a chosen hardware configuration and AZ. The billing for these instances is also based on the hardware configuration used
+and the duration of time they were running, which fits perfectly into the on demand pricing paradigm.
+2. High availability: Amazon S3 is an Object Storage service that provides 99.99% availability. This means that your data, stored under S3, will be unavailable for 
+less than a few hours over an entire YEAR, clearly fulfilling the availability paradigm.
+3. Autoscaling: Elastic Load Balancers (ELB) is a service provided by AWS which not only balances load between different compute resources like EC2, but also allows 
+the user to set up autoscaling policies, which will automatically provision new EC2 instances(horizontal scaling) or ramp up the hardware of existing instances
+(vertical scaling) automatically based on traffic spikes, without the need for developer intervention.
+4. Fault tolerance: Take Amazon Aurora, Amazon's highly fault tolerant and high throughput managed SQL database service. Amazon Aurora is replicated across mutliple
+Availability Zones, and the consistency protolcols are all managed by AWS, which means the user does not have to worry about consistency or replication while 
+using Amazon Aurora, and can rely on an entire Availability Zone to fail (think a flood occurs in an entire AZ wiping away all the data centers in that AZ) and still
+have lightning fast access to their database records.
+
+Apart from these 4 key features, there are many other features like security with Amazon WAF, DNS configuration with Amazon Route 53, serverless routines using 
+AWS Lambda, serving API's using Amazon API Gateway, Content Distribution Network using Amazon CloudFront, and Amazon SageMaker for MLOps and deploying Machine Learning
+models, that make AWS an obvious choice for any web developer.
