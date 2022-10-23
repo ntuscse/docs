@@ -3,3 +3,36 @@ sidebar_position: 6
 ---
 
 # AWS API Gateway
+
+Amazon API Gateway is a service that lets developers publish, maintain, monitor and deploy REST, HTTP and WebSocket API's at any scale. Developers can create API's that
+access other AWS services, third party apps, and data stored within the AWS environment. As such, a common way to use API Gateway is along with AWS Lambda to serve
+serverless routines and Amazon Cognito to perform authentication under a serverless paradigm.
+
+## Architecture
+
+![API Gateway Architecture](https://docs.aws.amazon.com/images/apigateway/latest/developerguide/images/Product-Page-Diagram_Amazon-API-Gateway-How-Works.png)
+
+Let's discuss the architecture of API Gateway.
+API Gateway handles all the work of serving concurrent API requests to thousands of customers including traffic management, access management, and security under the
+hood, so that you as a developer, can only focus on writing the logic for your serverless applications, and not worry about concurrency. More specifically, 
+API Gateway provides a "gateway" to customers to many backend AWS services like EC2 instances running workloads, AWS Lambda running functions, and interfacing
+with a Content Distribution Network like Amazon CloudFront. With API Gateway, you as a developer can abstract away user interaction with the backend of your 
+application by publishing REST/HTTP API's. This architecture allows for major advances in scalability, concurrency, abstraction, security, and
+access management and authentication.
+
+## Accessing API Gateway
+
+In order to publish API's using API Gateway, you as a developer must also be able to test and develop them in your local environments. For this prupose, AWS provides 
+multiple access options for developing API's on your local environment:
+
+1. AWS Management Console: The AWS Management Console is a one-stop solution for interacting with virtually all AWS services. It provides a web interface to publish,
+develop, and configure API's under API Gateway for those more comfortable with Graphical User Interfaces.
+2. AWS CLI: AWS also provides a command line interface for interacting with all of its services, which is meant to be the command line version of the AWS console,
+for those who are more comfortable with command line interfaces.
+3. AWS SDK's: AWS also provides Software Development Kits in many popular programming languages like Python, Go, and Java which allow users to develop and interact with
+AWS services and API Gateway using programming languages. This is particularly important when an AWS service needs to be accessed within some routine in a general
+purpose programming language codebase.
+
+Once again, this list is not exhaustive, and for more information about these access options, visit [Accessing AWS Services](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
+
+With this, we hope you have a better understanding of API Gateway and integrating it in a serverless paradigm.
