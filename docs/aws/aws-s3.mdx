@@ -5,8 +5,9 @@ sidebar_position: 3
 # AWS S3
 
 Amazon Simple Storage Service (S3) is Amazon's Object Storage service that provides high availability, security, fault tolerance and cost optimizations for users to
-store data. S3 can be used to store all types of data as objects, from data lakes or deep archives, to hosting static websites and rendering JavaScript/React, S3
-use cases are pretty diverse, and because of this, S3 provides different storage classes to store your data based on the user's performance and pricing needs.
+store data. S3 can be used to store all types of data as objects, from storing large repositories like data lakes(repositories of structured and unstrcutured data), to hosting static websites 
+and rendering JavaScript/React, S3 use cases are pretty diverse, and because of this, S3 provides different storage classes to store your data based 
+on the user's performance and pricing needs.
 ![S3 Buckets](https://www.testpreptraining.com/tutorial/wp-content/uploads/2019/08/image008.png)
 
 ## Storage Structure
@@ -33,8 +34,8 @@ reflect the same. For this S3 provides different storage classes as per the foll
 live (frequent access) data.
 2. S3 Infrequent Access: AS the name suggests, this class is suitable for data that is infrequently accessed, therefore its availability is slightly lower, for the 
 benefit of cheaper pricing.
-3. S3 Infrequent Access One Zone: To provide fault tolerance, S3 buckets are replicated across 3 different Aavailability Zones. However, for non-critical data like
-logs, this level of repl;ication is not required and possesses extra costs. Therefore One Zone can be used which provides lower cost at the expense of lower 
+3. S3 Infrequent Access One Zone: To provide fault tolerance, S3 buckets are replicated across 3 different Availability Zones. However, for non-critical data like
+logs, this level of replication is not required and possesses extra costs. Therefore, One Zone can be used which provides lower cost at the expense of lower 
 fault tolerance.
 4.S3 Glacier Deep Archive: This storage class is suited best for data that is archival data, and therefore very infrequently accessed. The availability of the 
 data is very low, and the retrieval times can be as high as hours, however, the costs for storing data are very cheap, so this is suited best for backups and logs.
