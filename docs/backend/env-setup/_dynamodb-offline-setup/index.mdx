@@ -1,20 +1,33 @@
-1. Download DynamoDB [here](https://s3.ap-southeast-1.amazonaws.com/dynamodb-local-singapore/dynamodb_local_latest.zip) (you can view other download links [here](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html))
-   :::caution
-   To run DynamoDB on your computer, you must have the Java Runtime Environment (JRE) version 8.x or newer. The application doesn't run on earlier JRE versions.
-   :::
+DynamoDB will be run locally using the `serverless-dynamodb-local` plugin.
 
-2. Extract the archive and copy its content to a location of your choice.
+The `serverless-dynamodb-local` plugin requires
 
-3. Open a terminal in the location where you've extracted your files and enter the following command:
+- `serverless@^1` (installed in the [previous step](#install-serverless-cli))
+- `Java Runtime Engine (JRE)` version 6.x
+
+1. Install plugin
 
    ```bash
-   java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
+   npm install --save serverless-dynamodb-local
    ```
 
-   :::info
-   If you're using Windows PowerShell, be sure to enclose the parameter name or the entire name and value like this:
+2. Then in `serverless.yml` add following entry to the plugins array: `serverless-dynamodb-local`
 
-   `java -D"java.library.path=./DynamoDBLocal_lib" -jar DynamoDBLocal.jar`
-   :::
+   ```yaml
+   plugins:
+     - serverless-dynamodb-local
+   ```
 
-4. DynamoDB is now running on port `8000`. To stop it, press `Ctrl+C` in the terminal.
+3. Install `DynamoDB` locally
+
+   ```bash
+   sls dynamodb install
+   ```
+
+4. Run `DynamoDB` locally
+
+   ```bash
+   sls dynamodb start
+   ```
+
+   This starts the DynamoDB Local instance as a local Java program (default: [http://localhost:8000](http://localhost:8000))
