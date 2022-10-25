@@ -1,0 +1,25 @@
+### Step 1. Install Poetry
+
+Run the following with PowerShell
+
+```powershell
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+```
+
+:::info
+If you have installed Python through the Microsoft Store, replace py with python in the command above.
+:::
+
+### Step 2. Add Poetry to your `PATH`
+
+The installer creates a `poetry` wrapper in `%APPDATA%\Python\Scripts` on Windows.
+
+If this directory is not present in your `$PATH`, you can add it in order to invoke Poetry as `poetry`.
+
+### Step 3. Use Poetry
+
+Once Poetry is installed and in your $PATH, you can execute the following
+
+```bash
+poetry --version
+```

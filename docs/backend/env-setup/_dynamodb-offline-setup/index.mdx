@@ -1,0 +1,33 @@
+DynamoDB will be run locally using the `serverless-dynamodb-local` plugin.
+
+The `serverless-dynamodb-local` plugin requires
+
+- `serverless@^1` (installed in the [previous step](#install-serverless-cli))
+- `Java Runtime Engine (JRE)` version 6.x
+
+1. Install plugin
+
+   ```bash
+   npm install --save serverless-dynamodb-local
+   ```
+
+2. Then in `serverless.yml` add following entry to the plugins array: `serverless-dynamodb-local`
+
+   ```yaml
+   plugins:
+     - serverless-dynamodb-local
+   ```
+
+3. Install `DynamoDB` locally
+
+   ```bash
+   sls dynamodb install
+   ```
+
+4. Run `DynamoDB` locally
+
+   ```bash
+   sls dynamodb start
+   ```
+
+   This starts the DynamoDB Local instance as a local Java program (default: [http://localhost:8000](http://localhost:8000))

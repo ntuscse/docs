@@ -1,0 +1,24 @@
+### Step 1. Install Poetry
+
+Run the following with bash
+
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+### Step 2. Add Poetry to your `PATH`
+
+The installer creates a `poetry` wrapper in
+
+- `$HOME/.local/bin` on Unix
+- `$POETRY_HOME/bin` if `$POETRY_HOME` is set.
+
+If this directory is not present in your `$PATH`, you can add it in order to invoke Poetry as `poetry` _(zshrc/bash_profile)_.
+
+### Step 3. Use Poetry
+
+Once Poetry is installed and in your $PATH, you can execute the following
+
+```bash
+poetry --version
+```
